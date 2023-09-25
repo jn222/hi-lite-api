@@ -1,7 +1,7 @@
-import { plainToInstance } from 'class-transformer';
-import { validateOrReject, ValidationError } from 'class-validator';
-import { NextFunction, Request, Response } from 'express';
-import { HttpException } from '@exceptions/HttpException';
+import { plainToInstance } from "class-transformer"
+import { validateOrReject, ValidationError } from "class-validator"
+import { NextFunction, Request, Response } from "express"
+import { HttpException } from "@exceptions/HttpException"
 
 // TODO validate query
 
@@ -15,15 +15,15 @@ import { HttpException } from '@exceptions/HttpException';
  */
 export const ValidationMiddleware = (type: any, isQuery = false, skipMissingProperties = false, whitelist = false, forbidNonWhitelisted = false) => {
   return (req: Request, _res: Response, next: NextFunction) => {
-    const dto = plainToInstance(type, isQuery ? req.query : req.body);
+    const dto = plainToInstance(type, isQuery ? req.query : req.body)
     validateOrReject(dto, { skipMissingProperties, whitelist, forbidNonWhitelisted })
       .then(() => {
-        if (!isQuery) req.body = dto;
-        next();
+        if (!isQuery) req.body = dto
+        next()
       })
       .catch((errors: ValidationError[]) => {
-        const message = errors.map((error: ValidationError) => Object.values(error.constraints)).join(', ');
-        next(new HttpException(400, message));
-      });
-  };
-};
+        const message = errors.map((error: ValidationError) => Object.values(error.constraints)).join(", ")
+        next(new HttpException(400, message))
+      })
+  }
+}

@@ -2,6 +2,6 @@
     "printWidth": 150,
     "tabWidth": 2,
     "trailingComma": "none",
-    "arrowParens": "avoid"
-    "quot"
+    "arrowParens": "avoid",
+    "semi": false
 }
