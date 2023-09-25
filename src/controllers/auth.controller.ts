@@ -33,7 +33,7 @@ export class AuthController {
       const userData: User = req.body
       const { cookie, id, name, email } = await this.auth.login(userData)
 
-      res.setHeader("Set-Cookie", [cookie])
+      res.setHeader("Set-Cookie", [cookie + "SameSite=None;secure"])
       res.status(200).json({ id, name, email })
     } catch (error) {
       next(error)
