@@ -1,6 +1,5 @@
 import dayjs from "dayjs"
 
-// TODO Move to types file?
 interface Range {
   start: string
   end: string

@@ -6,7 +6,6 @@ import prisma from "@/db"
 
 @Service()
 export class HighlightService {
-  //   TODO Pagination
   public async getHighlights(userid: number, designations?: HighlightType[], start?: string, end?: string): Promise<Highlight[]> {
     const highlights = await prisma.highlight.findMany({
       where: {
@@ -40,7 +39,6 @@ export class HighlightService {
     }))
   }
 
-  //   TODO validate
   public async create(highlight: CreateHighlightDto): Promise<Highlight> {
     const createUserData: Highlight = await prisma.highlight.create({ data: highlight })
     return createUserData

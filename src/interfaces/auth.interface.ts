@@ -1,5 +1,5 @@
 import { Request } from "express"
-import { User } from "@interfaces/users.interface"
+import { User } from "@/interfaces/users.interface"
 import * as core from "express-serve-static-core"
 
 export interface DataStoredInToken {

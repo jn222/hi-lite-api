@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import { Container } from "typedi"
 import { RequestWithUser } from "@interfaces/auth.interface"
-import { User } from "@interfaces/users.interface"
+import { User } from "@/interfaces/users.interface"
 import { AuthService } from "@services/auth.service"
 
 export class AuthController {
@@ -18,7 +18,6 @@ export class AuthController {
   public signUp = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const userData: User = req.body
-      // TODO verify that it's ok with conventions to deliver cookie on signup call
       const { cookie, id, name, email } = await this.auth.signup(userData)
 
       res.setHeader("Set-Cookie", [cookie])

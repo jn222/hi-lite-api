@@ -3,8 +3,6 @@ import { validateOrReject, ValidationError } from "class-validator"
 import { NextFunction, Request, Response } from "express"
 import { HttpException } from "@exceptions/HttpException"
 
-// TODO validate query
-
 /**
  * @name ValidationMiddleware
  * @description Allows use of decorator and non-decorator based validation

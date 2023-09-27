@@ -5,7 +5,7 @@ import { SECRET_KEY } from "@config"
 import { CreateUserDto, LoginUserDto } from "@dtos/users.dto"
 import { HttpException } from "@exceptions/HttpException"
 import { DataStoredInToken, TokenData } from "@interfaces/auth.interface"
-import { User } from "@interfaces/users.interface"
+import { User } from "@/interfaces/users.interface"
 import prisma from "@/db"
 
 @Service()
