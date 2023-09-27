@@ -5,6 +5,20 @@ Express server for a web app designed to help bring more awareness to the best p
 
 The client for this app can be found [here](https://github.com/jn222/hi-lite).
 
+## Demo
+
+Client: https://hi-lite.vercel.app/
+
+Server: https://hi-lite-api.onrender.com/
+
+
+## Screenshots
+
+![Main Page](public/main.png)
+
+![Highlight Page 1](public/highlight_1.png)
+
+![Highlight Page 2](public/highlight_2.png)
 
 ## Tech Stack
 
@@ -74,23 +88,6 @@ Build and start a production build
   yarn build
   yarn start
 ```
-
-
-## Demo
-
-Client: https://hi-lite.vercel.app/
-
-Server: https://hi-lite-api.onrender.com/
-
-
-## Screenshots
-
-![Main Page](public/main.png)
-
-![Highlight Page 1](public/highlight_1.png)
-
-![Highlight Page 2](public/highlight_2.png)
-
 
 ## Todos
 
