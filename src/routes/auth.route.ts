@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { AuthController } from "@controllers/auth.controller"
+import AuthController from "@controllers/auth.controller"
 import { CreateUserDto, LoginUserDto } from "@dtos/users.dto"
 import { Routes } from "@interfaces/routes.interface"
 import { AuthMiddleware } from "@middlewares/auth.middleware"
