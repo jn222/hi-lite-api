@@ -9,17 +9,29 @@ export class HighlightService {
   public async getHighlights(userid: number, designations?: HighlightType[], start?: string, end?: string): Promise<Highlight[]> {
     const highlights = await prisma.highlight.findMany({
       where: {
+        OR: [
+          {
+            designation: {
+              some: {
+                type: {
+                  in: designations.filter(designation => !!designation)
+                }
+              }
+            }
+          },
+          // If designation includes an undefined element, send back non-designated highlights
+          designations.includes(undefined)
+            ? {
+                designation: {
+                  none: {}
+                }
+              }
+            : {}
+        ],
         userid,
         created_at: {
           gte: start,
           lte: end
-        },
-        designation: {
-          some: {
-            type: {
-              in: designations
-            }
-          }
         }
       },
       include: {

@@ -11,8 +11,11 @@ export class HighlightController {
     try {
       const userId = req.user.id
       const { designations, start, end } = req.query
-      // TODO Find a better way to parse this out
-      const highlights: Highlight[] = await this.highlight.getHighlights(userId, designations?.split(",") as HighlightType[] | undefined, start, end)
+      // For cases where we want to include highlights with no designation, that will come through as an empty string
+      const formattedDesignations = designations?.split(",").map(value => (value === "" ? undefined : value)) as
+        | Array<HighlightType | undefined>
+        | undefined
+      const highlights: Highlight[] = await this.highlight.getHighlights(userId, formattedDesignations, start, end)
 
       res.status(200).json(highlights)
     } catch (error) {
