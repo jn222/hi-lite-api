@@ -25,3 +25,7 @@ export interface GetHighlightQuery {
   start?: string
   end?: string
 }
+
+export interface GetPendingHighlightsQuery {
+  timezone: string
+}

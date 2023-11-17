@@ -1,6 +1,6 @@
 import { NextFunction, Response } from "express"
 import { Container } from "typedi"
-import { GetHighlightQuery, Highlight, HighlightType } from "@/interfaces/highlights.interface"
+import { GetHighlightQuery, GetPendingHighlightsQuery, Highlight, HighlightType } from "@/interfaces/highlights.interface"
 import { HighlightService } from "@/services/highlights.service"
 import { RequestWithUser } from "@/interfaces/auth.interface"
 
@@ -47,10 +47,15 @@ export class HighlightController {
     }
   }
 
-  public getPendingHighlights = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
+  public getPendingHighlights = async (
+    req: RequestWithUser<{}, {}, {}, GetPendingHighlightsQuery>,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
     try {
+      const timezone = decodeURI(req.query.timezone)
       const userId = req.user.id
-      const highlights: { highlights: Highlight[]; designation?: HighlightType } = await this.highlight.getPendingHighlights(userId)
+      const highlights: { highlights: Highlight[]; designation?: HighlightType } = await this.highlight.getPendingHighlights(userId, timezone)
       res.status(200).json(highlights)
     } catch (error) {
       next(error)

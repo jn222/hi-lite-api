@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { HighlightController } from "@/controllers/highlights.controller"
-import { CreateHighlightDto, DesignateHighlightDto, QueryHighlightDto } from "@/dtos/highlights.dto"
+import { CreateHighlightDto, DesignateHighlightDto, QueryHighlightDto, GetPendingHighlightsDto } from "@/dtos/highlights.dto"
 import { Routes } from "@interfaces/routes.interface"
 import { ValidationMiddleware } from "@middlewares/validation.middleware"
 import { AuthMiddleware } from "@/middlewares/auth.middleware"
@@ -22,6 +22,10 @@ export class HighlightRoute implements Routes {
       [ValidationMiddleware(DesignateHighlightDto, false, true, true), AuthMiddleware],
       this.highlight.updateDesignation
     )
-    this.router.get(`${this.path}/pending`, AuthMiddleware, this.highlight.getPendingHighlights)
+    this.router.get(
+      `${this.path}/pending`,
+      [ValidationMiddleware(GetPendingHighlightsDto, true), AuthMiddleware],
+      this.highlight.getPendingHighlights
+    )
   }
 }

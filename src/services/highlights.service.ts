@@ -14,13 +14,13 @@ export class HighlightService {
             designation: {
               some: {
                 type: {
-                  in: designations.filter(designation => !!designation)
+                  in: designations?.filter(designation => !!designation)
                 }
               }
             }
           },
           // If designation includes an undefined element, send back non-designated highlights
-          designations.includes(undefined)
+          designations?.includes(undefined)
             ? {
                 designation: {
                   none: {}
@@ -61,9 +61,9 @@ export class HighlightService {
   }
 
   //   TODO put autoassignments in cron job
-  public async getPendingHighlights(userid: number): Promise<{ highlights: Highlight[]; designation?: HighlightType }> {
+  public async getPendingHighlights(userid: number, timezone: string): Promise<{ highlights: Highlight[]; designation?: HighlightType }> {
     const checkPendingRange = async (timeRange: HighlightType) => {
-      const { start, end } = range(timeRange)
+      const { start, end } = range(timeRange, timezone)
       const highlights = await this.getHighlights(userid, undefined, start, end)
       if (highlights.length && !highlights.filter(highlight => highlight.designation.includes(timeRange)).length) {
         if (highlights.length === 1) {

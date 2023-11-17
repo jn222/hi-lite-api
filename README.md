@@ -96,10 +96,11 @@ Build and start a production build
 - Update API doc
 - Localize highlight time ranges on highlight page
 - Use [node-cron](https://www.npmjs.com/package/node-cron) to automate cron jobs for autoassigning highlight designations when there is only one for a day/week/month/year
+- Find ways to view hanging highlights
 
 ## Known bugs
 
-- When there are skips in hierarchy, the highlights page sometimes is blank
+- Check timezone edge cases
 
 ## Acknowledgements
 

@@ -27,3 +27,8 @@ export class CreateHighlightDto {
   @MaxLength(255)
   public content
 }
+
+export class GetPendingHighlightsDto {
+  @IsString()
+  public timezone
+}
